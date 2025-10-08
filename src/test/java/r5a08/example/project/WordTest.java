@@ -18,8 +18,13 @@ public class WordTest {
         Letter expected = Letter.INCORRECT;
 
         // Assert
-        Assertions.assertEquals(actual, expected);
+        assertLetterEquals(actual, expected);
     }
+
+    private void assertLetterEquals(Letter actual, Letter expected) {
+        Assertions.assertEquals(expected, actual);
+    }
+
 
     @Test
     public void should_check_one_correct_letter(){
@@ -33,6 +38,6 @@ public class WordTest {
         Letter expected = Letter.CORRECT;
 
         // Assert
-        Assertions.assertEquals(actual, expected);
+        assertLetterEquals(actual, expected);
     }
 }
