@@ -1,31 +1,21 @@
 package r5a08.example.project;
 
 public class Score {
-    private final Letter[] letters;
-    private final String secret;
 
-    public Score(String secret) {
-        this.secret = secret;
-        this.letters = new Letter[secret.length()];
-        for (int i = 0; i < letters.length; i++) {
-            letters[i] = Letter.INCORRECT;
-        }
+    private final String correct;
+    private Letter result = Letter.INCORRECT;
+
+    public Score(String correct) {
+        this.correct=correct;
     }
 
-    // Évalue la lettre d'index 'index' à partir de la tentative 'attempt'
-    public void assess(int index, String attempt) {
-        if (index < 0 || index >= letters.length) return;
-        if (attempt == null || attempt.length() <= index) {
-            letters[index] = Letter.INCORRECT;
-            return;
-        }
-        letters[index] = (attempt.charAt(index) == secret.charAt(index))
-                ? Letter.CORRECT
-                : Letter.INCORRECT;
+    public Letter letter(int i) {
+        return result;
     }
 
-    // Retourne le score de la lettre à l'index donné
-    public Letter letter(int index) {
-        return letters[index];
+    public void assess(int position, String attempt) {
+        if (this.correct.charAt(position)==attempt.charAt(position)){
+            result = Letter.CORRECT;
+        }
     }
 }

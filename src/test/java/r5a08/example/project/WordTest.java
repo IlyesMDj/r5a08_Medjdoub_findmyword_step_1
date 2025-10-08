@@ -1,20 +1,38 @@
 package r5a08.example.project;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordTest {
     @Test
-    public void should_check_one_incorrect_letter() {
+    public void should_check_one_incorrect_letter(){
         // Arrange
-        // Arrange
-        Word word = new Word("E");
+        Word word = new Word("E"); // Le mot a déviner fait une lettre
+        Score score = word.guess("B");
+
 
         // Act
-        Score actual = word.guess("B");
+        Letter actual = score.letter(0);
+        Letter expected = Letter.INCORRECT;
 
         // Assert
-        assertEquals(Letter.INCORRECT, actual.letter(0));
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void should_check_one_correct_letter(){
+        // Act
+        Word word = new Word("E"); // Le mot a déviner fait une lettre
+        Score score = word.guess("E");
+
+        // Arrange
+
+        Letter actual = score.letter(0);
+        Letter expected = Letter.CORRECT;
+
+        // Assert
+        Assertions.assertEquals(actual, expected);
     }
 }

@@ -1,7 +1,7 @@
 package r5a08.example.project;
 
 public class Word {
-    private final String word;
+    private String word;
 
     public Word(String correctWord) {
         this.word = correctWord;
@@ -9,7 +9,9 @@ public class Word {
 
     public Score guess(String attempt) {
         Score score = new Score(word);
+
         score.assess(0, attempt);
+
         return score;
     }
 }
