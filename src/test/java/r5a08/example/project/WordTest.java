@@ -40,4 +40,19 @@ public class WordTest {
         // Assert
         assertLetterEquals(actual, expected);
     }
+
+    @Test
+    public void should_check_one_part_correct_letter() {
+        // Arrange
+        Word word = new Word("EA"); // Mot à deviner
+        Score score = word.guess("AE"); // Lettre correcte mal placée
+
+        // Act
+        Letter actual = score.letter(0); // 'A' est à la position 0 dans "AE"
+        Letter expected = Letter.PART_CORRECT;
+
+        // Assert
+        assertLetterEquals(expected, actual);
+    }
+
 }
