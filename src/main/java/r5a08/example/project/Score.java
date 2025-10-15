@@ -17,14 +17,22 @@ public class Score {
 
     public void assess(int position, String attempt) {
         this.position = position;
-        if (isCorrectLetter(position, attempt)) {
-            result = Letter.CORRECT;
-        } else if (isPartCorrectLetter(position, attempt)) {
-            result = Letter.PART_CORRECT;
-        } else {
-            result = Letter.INCORRECT;
-        }
+        this.result = determineResult(position, attempt);
     }
+
+    private Letter determineResult(int position, String attempt) {
+        if (isCorrectLetter(position, attempt)) {
+            return Letter.CORRECT;
+        }
+
+        if (isPartCorrectLetter(position, attempt)) {
+            return Letter.PART_CORRECT;
+        }
+
+        return Letter.INCORRECT;
+    }
+
+
 
     private boolean isPartCorrectLetter(int position, String attempt) {
         char attemptedChar = attempt.charAt(position);
